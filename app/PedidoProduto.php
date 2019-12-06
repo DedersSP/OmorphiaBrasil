@@ -10,8 +10,10 @@ class PedidoProduto extends Model
         'pedido_id',
         'produto_id',
         'status',
-        'valor',
+        'valor_custo',
+        'valor',        
         'desconto',
+        'comissao',    
         
     ];
     

@@ -118,6 +118,8 @@ class CarrinhoController extends Controller
         PedidoProduto::create([
             'pedido_id'  => $idpedido,
             'produto_id' => $idproduto,
+            'comissao' => $produto->comissao,
+            'valor_custo' => $produto->valor_custo, 
             'valor'      => $produto->valor,            
             'status'     => 'RE'
             ]);

@@ -20,8 +20,9 @@ class CreateProdutosTable extends Migration
             $table->string('subCategoria');
             $table->string('nome');
             $table->text('descricao')->nullable();
+            $table->decimal('valor_custo', 6, 2)->default(0);
             $table->decimal('valor', 6, 2)->default(0);
-            $table->integer('comissao');
+            $table->integer('comissao')->default(0);
             $table->string('imagem')->nullable();
             $table->enum('ativo', ['S', 'N'])->default('S');
             $table->enum('promocao', ['S', 'N'])->default('N');

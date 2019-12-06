@@ -18,8 +18,8 @@
             </div>
         @endif
         @forelse ($pedidos as $pedido)
-            <h5 class="col l4 s12 m4"> Pedido: {{ $pedido->id }} </h5>
-            <h5 class="col l4 s12 m4">Cliente: {{$pedido->pedidoCliente->id}} - {{$pedido->pedidoCliente->fantasia}}</h5>
+            <h6 class="col l4 s12 m4"> Pedido: {{ $pedido->id }} </h6>
+            <h6 class="col l4 s12 m4">Cliente: {{$pedido->pedidoCliente->id}} - {{$pedido->pedidoCliente->fantasia}}</h6>
             <h6 class="col l12 s12 m12"> Criado em: {{ $pedido->created_at->format('d/m/Y H:i') }} </h6>
             <table>
                 <thead>

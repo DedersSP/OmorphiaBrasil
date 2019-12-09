@@ -5,50 +5,63 @@
 
 <div class="container">
 	<div class="row">
-	<br>
-		<div class="row">
-			<form action="{{ route('produtos', $cliente->id) }}" name="form-categoria" id="form-categoria">
-				<div class="input-field col s4">
-				<select name="search" id="search" onchange="listaProdutos(this)">
-				<option value="" disabled selected>Selecione</option>
-				
-				@foreach($categorias as $c)
-				<option value="{{$c->categoria}}">{{$c->categoria}}</option>
-				@endforeach
-				
-				</select>
-				<label>Categoria</label>
-				</div>
-			</form>
-		</div>
-	@foreach($registros as $r)
-		<div class="col s12 m6 l4">
-			<div class="card large">
-				<div class="card-image">
-					<img src="{{ $r->imagem }}" class="responsive-img">
-				</div>
-				<div class="card-content">
-					<span class="card-title grey-text text-darken-4 truncate" title="{{ $r->nome }}">{{ $r->nome }}</span>
+		<h5>Produtos</h5>
+		<table id="example" class="display" style="width:100%">
+			<thead>
+				<tr>
+				<th>Imagem</th>
+				<th>Produto</th>
+				<th>Valor</th>
+				<th>Ação</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach($registros as $r)
+				<tr>
+					<td>
+					
+					<img src="{{ $r->imagem }}" class="materialboxed" width="50">
+					
+					</td>
+
+					<td>
+					<span class="card-title grey-text text-darken-4 truncate" title="{{ $r->nome }}">{{ $r->codigoProduto }} - {{ $r->nome }}</span>
+					<span class="card-title grey-text text-darken-4 truncate" title="{{ $r->nome }}">{{ $r->categoria }} - {{ $r->subCategoria }}</span>
+					</td>
+
+					<td>
 					<p>R$ {{ number_format($r->valor, 2, ',', '.') }}</p>
-				</div>
-				<br>
-				<div class="card-action">
-					<form method="POST" action="{{ route('carrinho.adicionar') }}">
+					</td>
+
+					<td>
+					
+						<form method="POST" action="{{ route('carrinho.adicionar') }}">
 						{{ csrf_field() }}
 						<input type="hidden" name="id" value="{{ $r->id }}">
-						
+
 						<input type="hidden" name="cliente_id" value="{{ $cliente->id }}">
-						
-						<button class="col l6 m6 s6 green accent-4 tooltipped btn" data-position="bottom" data-delay="50" data-tooltip="O produto será adicionado ao seu carrinho">Comprar</button>   
-            		</form>
-				</div>
-			</div>
-		</div>
-	@endforeach
+
+						<button class="col l12 m12 s12 green accent-4 tooltipped btn" data-position="bottom" data-delay="50" data-tooltip="O produto será adicionado ao seu carrinho">Comprar</button>   
+						</form>
+					
+					</td>
+				</tr>
+				@endforeach
+			</tbody>
+		</table>
 	</div>
 </div>
 
 @endsection
+
 @push('scripts')
-	<script type="text/javascript" src="/js/carrinho.js"></script>        
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+
+<script>
+	$(document).ready(function() {
+		$('#example').DataTable();
+	} );
+</script>
 @endpush

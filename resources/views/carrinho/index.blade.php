@@ -54,12 +54,13 @@
                             </div>
                             <a href="#" onclick="carrinhoRemoverProduto({{ $pedido->id }}, {{ $pedido_produto->produto_id }}, 0)" class="tooltipped" data-position="right" data-delay="50" data-tooltip="Retirar produto do carrinho?">Retirar produto</a>
                         </td>
-                        <td> {{ $pedido_produto->produto->nome }} </td>
+                        <td>{{ $pedido_produto->produto->nome }} </td>
                         <td>R$ {{ number_format($pedido_produto->produto->valor, 2, ',', '.') }}</td>
                         <td>
                             <div class="input-field">
                             <form id="form-desconto" method="POST" action="{{route('carrinho.updateDesconto')}}">
-                                {{ csrf_field() }}                                
+                                {{ csrf_field() }}
+                                <input type="hidden" name="id" value="">               
                                 <input type="hidden" name="pedido_id" value="">
                                 <input type="hidden" name="produto_id" value="">
                                 <input type="text" name="desconto" id="desconto" value="{{ $pedido_produto->descontos ? $pedido_produto->descontos : null }}" onchange="updateDesconto({{ $pedido->id }}, {{ $pedido_produto->produto_id }})">

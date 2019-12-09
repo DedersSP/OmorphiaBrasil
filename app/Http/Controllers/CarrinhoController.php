@@ -10,6 +10,7 @@ use App\PedidoProduto;
 use App\CupomDesconto;
 use App\Cliente;
 use App\Http\Controllers\DateTime;
+use Monolog\Processor\ProcessIdProcessor;
 
 class CarrinhoController extends Controller
 {
@@ -34,12 +35,15 @@ class CarrinhoController extends Controller
         $this->middleware('VerifyCsrfToken');
 
         $req = Request();
+        $id = $req->input('id');
         $idproduto = $req->input('produto_id');
         $idcliente = $req->input('cliente_id');
         $idpedido  = $req->input('pedido_id');
         $desconto = $req->input('desconto');
 
         $idusuario = Auth::id();
+
+        
 
         $idpedido = Pedido::consultaId([
             'id'      => $idpedido,
@@ -57,14 +61,16 @@ class CarrinhoController extends Controller
             'produto_id' => $idproduto
         ];
 
-        $produto = PedidoProduto::where($where_produto)->orderBy('id', 'desc')->first();
+        $produto = PedidoProduto::where($where_produto)->first();
         
-        if( empty($produto->id) ) {
+        
+        
+        if( empty($produto['produto_id']) ) {
             $req->session()->flash('mensagem-falha', 'Produto não encontrado no carrinho!');
             return redirect()->route('carrinho.index');
         }
 
-        
+
         PedidoProduto::where($where_produto)->update(['desconto' => $desconto]);
 
         

@@ -7,30 +7,13 @@
     <div class="row">
         <div class="row">
             <div class="col 10">
-                <h3>Clientes Cadastrados</h3>
+                <h5>Clientes Cadastrados</h5>
             </div>
             <div class="right col 2">
                 <h3><a href="{{ route('clientes.create') }}" class="btn-floating btn-large waves-effect waves-light orange"><i class="material-icons">add</i></a></h3>
             </div>
         </div>
-        <div class="row">
-            
-                <form action="{{ route('clientes.search') }}" method="get">
-                    <div class="row">
-                        <div class="input-field col 10">
-                            <input type="text" name="search" id="search">
-                            <label for="search">Search</label>
-                        </div>
-                        <div class="input-field col 2">
-                            <button class="right btn waves-effect waves-light orange" type="submit" name="action">
-                                <i class="material-icons">search</i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            
-        </div>
-        <hr/>
+        
         @if (Session::has('mensagem-sucesso'))
             <div class="card-panel green">
                 <strong>{{ Session::get('mensagem-sucesso') }}</strong>
@@ -42,7 +25,7 @@
             </div>
         @endif
         
-        <table class="responsive-table highlight">
+        <table id="example" class=" display responsive-table highlight" style="width:100%">
             <thead>
                 <tr>
                     <th>Código</th>
@@ -83,8 +66,16 @@
     </div>
 </div>
 
-@push('scripts')
-    <script type="text/javascript" src="/js/carrinho.js"></script>
-@endpush
-
 @endsection
+
+@push('scripts')
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+
+<script>
+	$(document).ready(function() {
+		$('#example').DataTable();
+	} );
+</script>
+@endpush

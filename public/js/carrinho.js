@@ -10,7 +10,8 @@ function carrinhoAdicionarProduto( idproduto ) {
     $('#form-adicionar-produto').submit();
 }
 
-function updateDesconto( idpedido, idproduto) {
+function updateDesconto( idpedido, idproduto, id) {
+    $('#form-desconto input[name="id"]').val(id);
     $('#form-desconto input[name="pedido_id"]').val(idpedido);
     $('#form-desconto input[name="produto_id"]').val(idproduto);
     $('#form-desconto input[name="desconto"]').val();

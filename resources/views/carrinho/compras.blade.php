@@ -17,6 +17,7 @@
             <h4>Compras concluídas</h4>
             @forelse ($compras as $pedido)
                 <h5 class="col l6 s12 m6"> Pedido: {{ $pedido->id }} </h5>
+                <h5 class="col l6 s12 m6">Cliente: {{ $pedido->pedidoCliente->id }} - {{ $pedido->pedidoCliente->fantasia }}</h5>
                 <h5 class="col l6 s12 m6"> Criado em: {{ $pedido->created_at->format('d/m/Y H:i') }} </h5>
                 <form method="POST" action="{{ route('carrinho.cancelar') }}">
                     {{ csrf_field() }}
@@ -54,7 +55,7 @@
                                 <td>
                                     <img width="100" height="100" src="{{ $pedido_produto->produto->imagem }}">
                                 </td>
-                                <td>{{ $pedido_produto->produto->nome }}</td>
+                                <td>{{$pedido_produto->produto->codigoProduto}} - {{ $pedido_produto->produto->nome }}</td>
                                 <td>R$ {{ number_format($pedido_produto->valor, 2, ',', '.') }}</td>
                                 <td>R$ {{ number_format($pedido_produto->desconto, 2, ',', '.') }}</td>
                                 <td>R$ {{ number_format($total_produto, 2, ',', '.') }}</td>

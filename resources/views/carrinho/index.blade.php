@@ -105,9 +105,9 @@
                     <option value="CD" >Cartão Débito</option>
                     <option value="CC" >Cartão Crédito</option>
                     <option value="D" >Dinheiro</option>
-                    <option value="CA" >Cheque a Vista</option>
-                    <option value="D30" >30 Dias Dinheiro</option>
-                    <option value="C30" >30 Dias Cheque</option>
+                    <option value="CA" >Cheque</option>
+                    <option value="BL" >Boleto</option>                    
+                    <option value="BL" >Transferência</option>                    
                     </select>
                     <br>
                     <label for="comprovante">Informe dados do Comprovante ou Cheque</label>
